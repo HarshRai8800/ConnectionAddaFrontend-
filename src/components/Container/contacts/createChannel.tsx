@@ -40,21 +40,21 @@ function CreateChannel() {
   const [channelName, setChannelName] = useState<string>("");
   const [openNewChannelModal, setOpenNewChannelModal] = useState<boolean>(false);
   const { toast } = useToast();
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await createAxios.post<Contact[]>("/channelContacts", {
-          email: userData?.email,
-        });
+  const getData = async () => {
+    try {
+      const response = await createAxios.post<Contact[]>("/channelContacts", {
+        email: userData?.email,
+      });
 console.log(response.data)
 
-        setAllContacts(  response.data);
-      } catch (error) {
-        console.log("Error while fetching saved contacts: ", error);
-      }
-    };
+      setAllContacts(  response.data);
+    } catch (error) {
+      console.log("Error while fetching saved contacts: ", error);
+    }
+  };
 
+  useEffect(() => {
+    
     getData();
   }, []);
 

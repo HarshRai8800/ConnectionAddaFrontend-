@@ -6,7 +6,7 @@ import ContactContainer from '@/components/Container/contacts/contactContainer'
 import { removeChat } from '@/store/context'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useCallback } from 'react'
 import { RootState } from '@/store/configStore'
 function Chat() {
 
@@ -14,10 +14,12 @@ function Chat() {
   const dispatch=useDispatch()
 
 
-  useEffect(()=>{
-  dispatch(removeChat())
+  
+  useCallback(()=>{
 
-  },[])
+    dispatch(removeChat())
+    return true
+  },[dispatch])
 const selector = useSelector((state:RootState)=>state.counter)
 
   return (

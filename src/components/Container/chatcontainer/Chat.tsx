@@ -102,14 +102,16 @@ function Chat() {
       console.error("Error downloading the file:", error);
     }
   };
-
+const calling = ()=>{
+  if (selectedChatType === "contact") {
+    getMessages();
+  } else {
+    getChannelMessages();
+  }
+}
   useEffect(() => {
-    if (selectedChatType === "contact") {
-      getMessages();
-    } else {
-      getChannelMessages();
-    }
-  }, [selectedChatData, selectedChatType]); 
+   calling()
+  }, [selectedChatData, selectedChatType,calling]); 
 
   
   useEffect(() => {

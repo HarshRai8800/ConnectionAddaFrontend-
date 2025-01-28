@@ -10,19 +10,21 @@ function AllChannels() {
   const dispatch = useDispatch();
   const { userData, selectedChatData, channel } = useSelector((state: RootState) => state.counter);
 
-  useEffect(() => {
-    const getChannels = async () => {
-      
-      try {
-        const response = await createAxios.post('/getChannels', {
-          userId: userData?.id,
-        });
-        dispatch(addChannel(response.data));
-      } catch (error) {
-        console.log('Error while fetching saved channels: ' + error);
-      }
-    };
 
+  const getChannels = async () => {
+      
+    try {
+      const response = await createAxios.post('/getChannels', {
+        userId: userData?.id,
+      });
+      dispatch(addChannel(response.data));
+    } catch (error) {
+      console.log('Error while fetching saved channels: ' + error);
+    }
+  };
+
+  useEffect(() => {
+    
     getChannels();
   }, [selectedChatData, userData?.id]);
 
